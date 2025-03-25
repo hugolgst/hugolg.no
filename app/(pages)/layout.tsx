@@ -1,6 +1,6 @@
 'use client'
 
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { PropsWithChildren } from 'react'
 
 import LinearBlur from '@/components/miscellaneous/LinearBlur'
@@ -10,7 +10,13 @@ const Layout = ({ children }: PropsWithChildren) => (
   <Flex pos='relative'>
     {children}
 
-    <LinearBlur height='300px' />
+    <Box
+      pos='fixed'
+      top='0'
+      w='100vw'
+    >
+      <LinearBlur height='250px' />
+    </Box>
     <NavigationBar />
   </Flex>
 )
