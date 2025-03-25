@@ -33,7 +33,7 @@ const config = defineConfig({
           focusRing: { value: '{colors.primary.500}' }
         },
         border: {
-          blurredFlex: { value: 'rgba(200, 200, 200, 0.8)' }
+          blurredFlex: { value: 'rgba(220, 220, 220, 0.8)' }
         }
       }
     }

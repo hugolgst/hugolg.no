@@ -3,6 +3,7 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 
 import Particles from '@/components/particles'
+import ProjectCard from '@/components/ProjectCard'
 
 const HomePage = () => {
   return <Flex
@@ -49,8 +50,20 @@ const HomePage = () => {
       </Flex>
     </Box>
 
-    <Flex p='20px 15%'>
-      <Heading fontSize='4em'>My latest work</Heading>
+    <Flex
+      direction='column'
+      p='20px 15%'
+    >
+      <Heading
+        fontSize='4em'
+        lineHeight='100px'
+      >
+        My latest work
+      </Heading>
+
+      <ProjectCard title='norlys.live'>
+        blablab
+      </ProjectCard>
     </Flex>
   </Flex>
 }
