@@ -33,7 +33,7 @@ const HomePage = () => {
       >
         <Text
           color='gray.500'
-          fontSize='2em'
+          fontSize='1.6em'
           fontWeight='500'
         >
           Software Engineer based in Tromsø, Norway.
@@ -41,8 +41,8 @@ const HomePage = () => {
 
         <Heading
           flexShrink='0'
-          fontSize='10em'
-          lineHeight='200px'
+          fontSize='8em'
+          lineHeight='180px'
         >
           Hugo Lageneste
         </Heading>

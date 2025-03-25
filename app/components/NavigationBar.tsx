@@ -17,7 +17,7 @@ const NAVIGATION_ITEMS: Array<NavigationItem> = [
 ]
 
 // Fixed item width in pixels
-const ITEM_WIDTH = '120px'
+const ITEM_WIDTH = '110px'
 
 // Generate dynamic styles based on navigation items count
 const generateActiveStyles = () => {
@@ -140,7 +140,7 @@ const NavigationBar = () => {
             textDecoration='none'
             transition='color 0.3s ease'
             fontSize='1.2em'
-            p='10px'
+            p='8px'
             _hover={{ textDecoration: 'none' }}
             onClick={(e: React.MouseEvent) => {
               e.preventDefault()
