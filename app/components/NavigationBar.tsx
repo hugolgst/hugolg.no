@@ -17,7 +17,7 @@ const NAVIGATION_ITEMS: Array<NavigationItem> = [
 ]
 
 // Fixed item width in pixels
-const ITEM_WIDTH = '100px'
+const ITEM_WIDTH = '120px'
 
 // Generate dynamic styles based on navigation items count
 const generateActiveStyles = () => {
@@ -115,10 +115,9 @@ const NavigationBar = () => {
 
   return <Box
     pos='fixed'
-    top={0}
+    top='20px'
     left='50%'
     overflow='hidden'
-    my={4}
     bg='black'
     borderRadius='full'
     transform='translateX(-50%)'
@@ -136,12 +135,12 @@ const NavigationBar = () => {
           <chakra.a
             href={`#${item.id}`}
             display='block'
-            px={4}
-            py={2}
             color={activeSection === item.id ? 'primary.400' : 'white'}
             fontWeight='semibold'
             textDecoration='none'
             transition='color 0.3s ease'
+            fontSize='1.2em'
+            p='10px'
             _hover={{ textDecoration: 'none' }}
             onClick={(e: React.MouseEvent) => {
               e.preventDefault()
