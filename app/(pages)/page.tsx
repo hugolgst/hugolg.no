@@ -5,7 +5,10 @@ import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import Particles from '@/components/particles'
 
 const HomePage = () => {
-  return <Flex>
+  return <Flex
+    direction='column'
+    gap='100px'
+  >
     <Box
       pos='relative'
       w='100vh'
@@ -24,7 +27,7 @@ const HomePage = () => {
       <Flex
         pos='absolute'
         bottom='30px'
-        left='10%'
+        left='15%'
         direction='column'
         w='100%'
       >
@@ -45,6 +48,10 @@ const HomePage = () => {
         </Heading>
       </Flex>
     </Box>
+
+    <Flex p='20px 15%'>
+      <Heading fontSize='4em'>My latest work</Heading>
+    </Flex>
   </Flex>
 }
 
