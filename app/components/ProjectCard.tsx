@@ -63,7 +63,7 @@ const ProjectCard = ({
       >
         <Flex
           direction='column'
-          gap='2px'
+          gap='5px'
         >
           <Text
             color='gray.400'
@@ -80,8 +80,7 @@ const ProjectCard = ({
             gap='10px'
           >
             {logoSrc && <Image
-              h='50px'
-              borderRadius='10px'
+              h='40px'
               src={logoSrc}
             />}
             <Heading
