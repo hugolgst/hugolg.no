@@ -7,6 +7,7 @@ interface LinearBlurProps extends React.HTMLAttributes<HTMLDivElement> {
   tint?: string;
   side?: 'left' | 'right' | 'top' | 'bottom';
   height?: string
+  width?: string
 }
 
 const oppositeSide = {
@@ -23,6 +24,7 @@ const LinearBlur = ({
   tint = 'transparent',
   side = 'top',
   height = '200px',
+  width = '200px',
   ...props
 }: LinearBlurProps) => {
   const actualSteps = Math.max(1, steps)
@@ -46,8 +48,8 @@ const LinearBlur = ({
         transformOrigin: side,
         position: 'absolute',
         top: 0,
-        width: '100%',
-        height
+        height,
+        width
       }}
     >
       <div style={{

@@ -15,7 +15,10 @@ const Layout = ({ children }: PropsWithChildren) => (
       top='0'
       w='100vw'
     >
-      <LinearBlur height='200px' />
+      <LinearBlur
+        height='200px'
+        width='100%'
+      />
     </Box>
 
     <NavigationBar />
