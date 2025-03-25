@@ -12,6 +12,7 @@ const Layout = ({ children }: PropsWithChildren) => (
 
     <Box
       pos='fixed'
+      zIndex={9000}
       top='0'
       w='100vw'
     >

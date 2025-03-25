@@ -3,6 +3,7 @@
 import { Box, Flex, Heading, Image, Spacer, Text, chakra } from '@chakra-ui/react'
 import Link from 'next/link'
 
+import LanguageMap from '@/components/LanguageMap'
 import Particles from '@/components/particles'
 import ProjectCard from '@/components/ProjectCard'
 
@@ -16,6 +17,7 @@ const HomePage = () => {
       pos='relative'
       w='100%'
       h='100vh'
+      id='home'
     >
       <Box
         pos='absolute'
@@ -57,12 +59,13 @@ const HomePage = () => {
       gap='50px'
       w='100vw'
       p='20px 15%'
+      id='projects'
     >
       <Heading
         fontSize='4em'
         lineHeight='100px'
       >
-        My latest work
+        My latest projects
       </Heading>
 
       <ProjectCard
@@ -166,6 +169,8 @@ const HomePage = () => {
         </Flex>
       </ProjectCard>
     </Flex>
+
+    <LanguageMap />
 
     <Flex
       align='center'
