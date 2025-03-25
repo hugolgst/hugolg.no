@@ -29,11 +29,10 @@ export default [
 
   {
     ignores: [
+      'node_modules',
       '.next',
       'eslint.config.mjs',
       'next.config.mjs',
-      'app/types/openapi.ts',
-      'app/components/snippets/',
       'public'
     ],
   },
