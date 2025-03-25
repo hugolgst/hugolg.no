@@ -66,6 +66,7 @@ const HomePage = () => {
       </Heading>
 
       <ProjectCard
+        span='Dec 2022 — Present'
         title='norlys.live'
         logoSrc='/assets/norlys-logo.svg'
         backgroundImageSrc='/assets/norlys-background.png'
@@ -75,11 +76,17 @@ const HomePage = () => {
         <Flex
           direction='column'
           h='100%'
-          color='white'
+          color='gray.300'
         >
-          <Heading>Founded and built the entire software</Heading>
-
           <Spacer />
+
+          <Heading
+            mb='10px'
+            color='white'
+            fontSize='1.6em'
+          >
+            Founded and built the entire software
+          </Heading>
 
           <Text>
             <chakra.span fontWeight='bold'>Machine Learning model</chakra.span>
@@ -100,7 +107,7 @@ const HomePage = () => {
             borderRadius='full'
             bgColor='primary.400/30'
           >
-            15'000 unique monthly users
+            15{'\''}000 unique monthly users
           </Flex>
         </Flex>
       </ProjectCard>

@@ -1,4 +1,4 @@
-import { Flex, Heading, Image } from '@chakra-ui/react'
+import { Flex, Heading, Image, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 
@@ -11,6 +11,7 @@ interface ProjectCardProps extends PropsWithChildren {
   url?: string
   color?: string
   linearBlurTint?: string
+  span: string
 }
 
 const ProjectCard = ({
@@ -20,6 +21,7 @@ const ProjectCard = ({
   url,
   color = 'black',
   linearBlurTint = 'transparent',
+  span,
   children
 }: ProjectCardProps) => {
   const router = useRouter()
@@ -36,8 +38,6 @@ const ProjectCard = ({
     bgImage={`url("${backgroundImageSrc}")`}
     bgSize='cover'
     backgroundPosition='center'
-    border='1px solid'
-    borderColor='border.blurredFlex'
     borderRadius='25px'
     cursor='pointer'
     onClick={() => url && router.push(url)}
@@ -61,22 +61,36 @@ const ProjectCard = ({
         w='50%'
         h='100%'
       >
-        {/* Title + Logo */}
         <Flex
-          align='center'
-          gap='10px'
+          direction='column'
+          gap='2px'
         >
-          {logoSrc && <Image
-            h='50px'
-            borderRadius='10px'
-            src={logoSrc}
-          />}
-          <Heading
-            color={color}
-            fontSize='2.4em'
+          <Text
+            color='gray.400'
+            fontSize='0.8em'
+            fontWeight='semibold'
+            textTransform='uppercase'
           >
-            {title}
-          </Heading>
+            {span}
+          </Text>
+
+          {/* Title + Logo */}
+          <Flex
+            align='center'
+            gap='10px'
+          >
+            {logoSrc && <Image
+              h='50px'
+              borderRadius='10px'
+              src={logoSrc}
+            />}
+            <Heading
+              color={color}
+              fontSize='2.4em'
+            >
+              {title}
+            </Heading>
+          </Flex>
         </Flex>
 
         {children}
