@@ -1,6 +1,7 @@
 'use client'
 
-import { Box, Flex, Heading, Spacer, Text, chakra } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, Spacer, Text, chakra } from '@chakra-ui/react'
+import Link from 'next/link'
 
 import Particles from '@/components/particles'
 import ProjectCard from '@/components/ProjectCard'
@@ -103,6 +104,28 @@ const HomePage = () => {
           </Flex>
         </Flex>
       </ProjectCard>
+    </Flex>
+
+    <Flex
+      align='center'
+      w='100vw'
+      p='50px 15%'
+    >
+      <Image
+        h='100px'
+        src='/assets/signature.svg'
+      />
+
+      <Spacer />
+
+      <Link href='mailto:hugo.lageneste@pm.me'>
+        <Heading
+          fontSize='1.8em'
+          textDecoration='underline'
+        >
+          hugo.lageneste@pm.me
+        </Heading>
+      </Link>
     </Flex>
   </Flex>
 }
