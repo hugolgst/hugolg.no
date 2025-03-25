@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useFrame } from '@react-three/fiber'
 import React, { useRef, useMemo } from 'react'
 import * as THREE from 'three'
@@ -36,10 +37,11 @@ const FloatingParticles: React.FC = () => {
     if (instancedMesh.current) {
       for (let i = 0; i < FLOATING_PARTICLE_COUNT; i++) {
         // Update position
-        positions[i].add(velocities[i]);
+        positions[i].add(velocities[i])
 
         // Boundary check and velocity reversal
-        [ 'x', 'y', 'z' ].forEach((axis) => {
+        const axises = [ 'x', 'y', 'z' ] as Array<'x' | 'y' | 'z'>
+        axises.forEach((axis) => {
           if (Math.abs(positions[i][axis]) > SCENE_SIZE / 2) {
             positions[i][axis] = Math.sign(positions[i][axis]) * SCENE_SIZE / 2
             velocities[i][axis] *= -1
