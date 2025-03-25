@@ -14,7 +14,7 @@ const Particles = () => (
     />
     <fogExp2
       attach='fog'
-      args={[ '#ffffff', 0.4 ]}
+      args={[ '#ffffff', 0.3 ]}
     />
 
     {/* Particle systems */}

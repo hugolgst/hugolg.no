@@ -72,6 +72,7 @@ const HomePage = () => {
         backgroundImageSrc='/assets/norlys-background.png'
         color='white'
         linearBlurTint='rgba(0,0,0,0.5)'
+        url='https://norlys.live'
       >
         <Flex
           direction='column'
@@ -108,6 +109,59 @@ const HomePage = () => {
             bgColor='primary.400/30'
           >
             15{'\''}000 unique monthly users
+          </Flex>
+        </Flex>
+      </ProjectCard>
+
+      <ProjectCard
+        span='Dec 2017 — Jul 2020'
+        title='Olivia AI'
+        logoSrc='/assets/olivia-logo.svg'
+        backgroundImageSrc='/assets/olivia-background.png'
+        url='https://github.com/olivia-ai/olivia'
+      >
+        <Flex
+          direction='column'
+          h='100%'
+        >
+          <Spacer />
+
+          <Heading
+            mb='10px'
+            fontSize='1.6em'
+          >
+            Wrote scientific paper and implemented it
+          </Heading>
+
+          <Text>
+            Wrote Machine Learning model backpropagation from scratch with no
+            libraries in Golang at 16 years old.
+          </Text>
+
+          <Flex gap='10px'>
+            <Flex
+              w='fit-content'
+              mt='20px'
+              p='5px 15px'
+              color='primary.700'
+              fontWeight='semibold'
+              borderRadius='full'
+              bgColor='primary.500/30'
+            >
+              3{'\''}700 GitHub stars
+            </Flex>
+
+            <Flex
+              w='fit-content'
+              mt='20px'
+              p='5px 15px'
+              color='primary.700'
+              fontWeight='semibold'
+              borderRadius='full'
+              bgColor='primary.500/30'
+            >
+              #1 on GitHub Trending page
+            </Flex>
           </Flex>
         </Flex>
       </ProjectCard>

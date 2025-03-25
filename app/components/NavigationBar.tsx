@@ -115,6 +115,7 @@ const NavigationBar = () => {
 
   return <Box
     pos='fixed'
+    zIndex={9999}
     top='20px'
     left='50%'
     overflow='hidden'

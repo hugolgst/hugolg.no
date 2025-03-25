@@ -40,12 +40,13 @@ const ProjectCard = ({
     backgroundPosition='center'
     borderRadius='25px'
     cursor='pointer'
+    bgColor={backgroundImageSrc ? undefined : 'gray.100'}
     onClick={() => url && router.push(url)}
   >
     <LinearBlur
       side='left'
       tint={linearBlurTint}
-      width='50%'
+      width='80%'
       height='100%'
     />
 
@@ -58,7 +59,7 @@ const ProjectCard = ({
       <Flex
         direction='column'
         gap='10px'
-        w='50%'
+        w='40%'
         h='100%'
       >
         <Flex
