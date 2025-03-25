@@ -62,7 +62,7 @@ const NavigationList = chakra('ul', {
       height: '100%',
       width: `${100 / NAVIGATION_ITEMS.length}%`,
       bg: 'primary.400',
-      opacity: 0.4,
+      opacity: 0.3,
       zIndex: 0,
       transition: 'all 0.3s ease',
       borderRadius: 'full',
