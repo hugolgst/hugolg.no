@@ -301,7 +301,6 @@ const LanguageMap = () => {
       minH='400px'
       p='40px'
       borderRadius='25px'
-      id='languages'
     >
       <Flex
         direction='column'

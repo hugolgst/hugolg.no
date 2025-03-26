@@ -4,6 +4,7 @@ import { Box, Flex, Heading, Image, Spacer, Text, chakra } from '@chakra-ui/reac
 import Link from 'next/link'
 
 import LanguageMap from '@/components/LanguageMap'
+import Badge from '@/components/miscellaneous/Badge'
 import Particles from '@/components/particles'
 import ProjectCard from '@/components/ProjectCard'
 
@@ -54,12 +55,63 @@ const HomePage = () => {
       </Flex>
     </Box>
 
+    <Box id='about' />
+    <Flex
+      direction='column'
+      gap='4px'
+      w='100vw'
+      p='20px 15%'
+    >
+      <Heading
+        fontSize='4em'
+        lineHeight='100px'
+      >
+        About me
+      </Heading>
+
+      <Text
+        mt='10px'
+        fontSize='1.6em'
+      >
+        Professional Software Engineer since 2020 with strong skills in
+        {' '}
+        <chakra.span fontWeight='semibold'>Software Architecture</chakra.span>
+        ,
+        {' '}
+        <chakra.span fontWeight='bold'>Clean code</chakra.span>
+        {' '}
+        and
+        {' '}
+        <chakra.span fontWeight='bold'>Critical thinking</chakra.span>
+        .
+      </Text>
+      <Text fontSize='1.6em'>
+        I enjoy sitting down trying to find ideas that will make a product great
+        and robust to then architecture the software around them!
+      </Text>
+
+      <Flex
+        wrap='wrap'
+        direction='row'
+        gap='10px'
+        mt='10px'
+      >
+        <Badge>TypeScript</Badge>
+        <Badge>Golang</Badge>
+        <Badge>Ruby</Badge>
+        <Badge>Python</Badge>
+        <Badge>Nix</Badge>
+        <Badge>Git</Badge>
+        <Badge>Docker</Badge>
+      </Flex>
+    </Flex>
+
+    <Box id='projects' />
     <Flex
       direction='column'
       gap='50px'
       w='100vw'
       p='20px 15%'
-      id='projects'
     >
       <Heading
         fontSize='4em'
@@ -170,6 +222,7 @@ const HomePage = () => {
       </ProjectCard>
     </Flex>
 
+    <Box id='languages' />
     <LanguageMap />
 
     <Flex
