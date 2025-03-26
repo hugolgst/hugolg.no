@@ -2,7 +2,7 @@ import { Box,
   Flex,
   Text,
   BoxProps } from '@chakra-ui/react'
-import React, { useRef, useState, useEffect, ReactNode, forwardRef } from 'react'
+import React, { useRef, useState, useEffect, ReactNode, forwardRef, PropsWithChildren } from 'react'
 
 // Define types for the component props
 interface ParallaxLayerProps {
@@ -10,16 +10,7 @@ interface ParallaxLayerProps {
   isReverse?: boolean;
 }
 
-interface AppleTVCardProps extends BoxProps {
-  /**
-   * Content to display inside the card
-   */
-  children: ReactNode;
-
-  /**
-   * Optional title for the card
-   */
-  title?: string;
+interface AppleTVCardProps extends BoxProps, PropsWithChildren {
 
   /**
    * Whether to show the shadow effect
@@ -50,7 +41,9 @@ const ParallaxLayer = forwardRef<HTMLDivElement, ParallaxLayerProps>((props, ref
   } = props
 
   return (
+    // eslint-disable-next-line chakra-ui/props-shorthand
     <Flex
+      className='parallax-layer'
       ref={ref}
       pos='absolute'
       zIndex={2}
@@ -60,7 +53,7 @@ const ParallaxLayer = forwardRef<HTMLDivElement, ParallaxLayerProps>((props, ref
       left='0'
       align='center'
       justify='center'
-      bgPosition='center center'
+      backgroundPosition='center center'
       bgRepeat='no-repeat'
       pointerEvents='none'
       transition='transform 50ms ease-in-out'
@@ -328,36 +321,12 @@ const GlowCard = forwardRef<HTMLDivElement, AppleTVCardProps>((props, ref) => {
         {parallaxLayers.map((layer, index) => (
           <ParallaxLayer
             key={index}
-            className='parallax-layer'
             isReverse={layer && typeof layer === 'object' && 'props' in layer && layer.props?.isReverse}
           >
             {layer}
           </ParallaxLayer>
         ))}
       </Box>
-
-      {/* Optional title */}
-      {title && (
-        <Text
-          pos='absolute'
-          right='0'
-          bottom={isHovered ? '0.9rem' : '1.3rem'}
-          left='0'
-          overflow='hidden'
-          color='white'
-          fontFamily='Helvetica Neue, Helvetica, Arial, sans-serif'
-          fontSize='1.3rem'
-          textAlign='center'
-          opacity={isHovered ? 1 : 0}
-          textShadow='0 1px 2px black'
-          whiteSpace='nowrap'
-          pointerEvents='none'
-          textOverflow='ellipsis'
-          transition='opacity 0.12s ease-in-out, bottom 0.09s ease-in-out'
-        >
-          {title}
-        </Text>
-      )}
     </Box>
   )
 })
