@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@chakra-ui/react'
-import React, { useRef, useState, useEffect, PropsWithChildren } from 'react'
+import React, { useRef, useState, PropsWithChildren } from 'react'
 
 interface GlowCardProps extends BoxProps, PropsWithChildren {
   withShadow?: boolean
@@ -40,12 +40,12 @@ export const ParallaxContent = ({
   )
 }
 
-export const GlowCard: React.FC<GlowCardProps> = ({
+export const GlowCard = ({
   children,
   withShadow = false,
   notRounded = false,
   ...rest
-}) => {
+}: GlowCardProps) => {
   const [ isHovered, setIsHovered ] = useState(false)
   const [ hasReflection, setHasReflection ] = useState(false)
   const [ hasShadow, setHasShadow ] = useState(false)
@@ -55,22 +55,6 @@ export const GlowCard: React.FC<GlowCardProps> = ({
   const contentRef = useRef<HTMLDivElement>(null)
   const reflectionRef = useRef<HTMLDivElement>(null)
   const shadowRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (cardRef.current) {
-        const size = Math.max(cardRef.current.clientWidth, cardRef.current.clientHeight)
-        cardRef.current.style.fontSize = `${size / 3.5}px`
-      }
-    }
-
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
 
   const handleFocus = () => {
     if (cardRef.current && containerRef.current) {
@@ -215,6 +199,7 @@ export const GlowCard: React.FC<GlowCardProps> = ({
         zIndex={0}
         overflow='hidden'
         w='100%'
+        h='100%'
         borderRadius={notRounded ? '0' : 'min(max(2vmax, 2rem), 3rem)'}
         shadow={isHovered ? '0 1.5rem 2rem .25rem #0005' : '0 .25rem .25rem #0002'}
         transformOrigin='50%'
@@ -259,23 +244,19 @@ export const GlowCard: React.FC<GlowCardProps> = ({
           />
         )}
 
+        {/* eslint-disable-next-line chakra-ui/props-shorthand */}
         <Box
           className='content'
           ref={contentRef}
-          sx={{
-            '& *': {
-              pointerEvents: 'none'
-            }
-          }}
           pos='relative'
           zIndex={1}
           display='block'
           w='100%'
-          pb='58%'
-          bgImage='linear-gradient(to bottom, #555, #000)'
-          bgPosition='center center'
+          h='100%'
+          backgroundPosition='center center'
           border='none'
           outline='none'
+          bgColor='white'
           onBlur={handleBlur}
           onFocus={handleFocus}
           tabIndex={0}
