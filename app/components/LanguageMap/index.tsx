@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { chakra, Text, Spinner, Center, Flex, Box, Heading } from '@chakra-ui/react'
 import { Mercator } from '@visx/geo'
 import { scaleOrdinal } from '@visx/scale'

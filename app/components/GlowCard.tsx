@@ -1,255 +1,222 @@
-import { Box,
-  Flex,
-  Text,
-  BoxProps } from '@chakra-ui/react'
-import React, { useRef, useState, useEffect, ReactNode, forwardRef, PropsWithChildren } from 'react'
+import { Box, BoxProps } from '@chakra-ui/react'
+import React, { useRef, useState, useEffect, PropsWithChildren } from 'react'
 
-// Define types for the component props
-interface ParallaxLayerProps {
-  children: ReactNode;
-  isReverse?: boolean;
+interface GlowCardProps extends BoxProps, PropsWithChildren {
+  withShadow?: boolean
+  notRounded?: boolean
 }
 
-interface AppleTVCardProps extends BoxProps, PropsWithChildren {
-
-  /**
-   * Whether to show the shadow effect
-   * @default true
-   */
-  withShadow?: boolean;
-
-  /**
-   * Whether to disable rounded corners
-   * @default false
-   */
-  notRounded?: boolean;
-
-  /**
-   * Optional React elements to use as parallax layers
-   */
-  parallaxLayers?: Array<ReactNode>;
+interface ParallaxContentProps extends BoxProps, PropsWithChildren {
+  reverse?: boolean
 }
 
-/**
- * Parallax Layer component for creating depth effects
- */
-const ParallaxLayer = forwardRef<HTMLDivElement, ParallaxLayerProps>((props, ref) => {
-  const {
-    children,
-    isReverse = false,
-    ...rest
-  } = props
-
+export const ParallaxContent = ({
+  reverse,
+  children,
+  ...rest
+}: ParallaxContentProps) => {
   return (
     // eslint-disable-next-line chakra-ui/props-shorthand
-    <Flex
-      className='parallax-layer'
-      ref={ref}
+    <Box
+      className={`parallax-content ${reverse ? 'reverse' : ''}`}
       pos='absolute'
       zIndex={2}
       top='0'
       right='0'
       bottom='0'
       left='0'
-      align='center'
-      justify='center'
-      backgroundPosition='center center'
+      alignItems='center'
+      justifyContent='center'
+      display='flex'
+      backgroundPosition='center'
       bgRepeat='no-repeat'
       pointerEvents='none'
       transition='transform 50ms ease-in-out'
-      data-reverse={isReverse ? 'true' : 'false'}
       transformStyle='preserve-3d'
       {...rest}
     >
       {children}
-    </Flex>
+    </Box>
   )
-})
+}
 
-/**
- * GlowCard - A React component that wraps content with an Apple TV card glow effect
- */
-const GlowCard = forwardRef<HTMLDivElement, AppleTVCardProps>((props, ref) => {
-  const {
-    children,
-    title,
-    withShadow = true,
-    notRounded = false,
-    parallaxLayers = [],
-    ...rest
-  } = props
+export const GlowCard: React.FC<GlowCardProps> = ({
+  children,
+  withShadow = false,
+  notRounded = false,
+  ...rest
+}) => {
+  const [ isHovered, setIsHovered ] = useState(false)
+  const [ hasReflection, setHasReflection ] = useState(false)
+  const [ hasShadow, setHasShadow ] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const reflectionRef = useRef<HTMLDivElement>(null)
+  const shadowRef = useRef<HTMLDivElement>(null)
 
-  const [ isHovered, setIsHovered ] = useState(false)
-  const [ showReflection, setShowReflection ] = useState(false)
-  const [ showShadow, setShowShadow ] = useState(false)
-  const [ fontSize, setFontSize ] = useState<string>('1rem')
-
-  // Set initial font size and adjust on resize
   useEffect(() => {
-    const updateFontSize = () => {
+    const handleResize = () => {
       if (cardRef.current) {
         const size = Math.max(cardRef.current.clientWidth, cardRef.current.clientHeight)
-        setFontSize(`${size / 3.5}px`)
+        cardRef.current.style.fontSize = `${size / 3.5}px`
       }
     }
 
-    updateFontSize()
-    window.addEventListener('resize', updateFontSize)
-    return () => window.removeEventListener('resize', updateFontSize)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
-  // Event handlers
   const handleFocus = () => {
     if (cardRef.current && containerRef.current) {
-      const size = Math.max(cardRef.current.clientWidth, cardRef.current.clientHeight)
-      containerRef.current.style.perspective = `${size * 2.5}px`
+      const width = cardRef.current.clientWidth
+      const height = cardRef.current.clientHeight
+      const perspective = Math.max(width, height)
+
+      containerRef.current.style.perspective = `${perspective * 2.5}px`
     }
   }
 
+  const handleBlur = () => {
+    cleanup()
+  }
+
   const handleStart = (e: React.MouseEvent | React.TouchEvent) => {
+    if (contentRef.current) {
+      contentRef.current.focus()
+    }
     setIsHovered(true)
-    contentRef.current?.focus()
 
-    // Always show effects
-    setShowReflection(true)
-    if (withShadow) setShowShadow(true)
-
-    handleMove(e)
+    if (e.type === 'touchstart') {
+      handleMove(e as React.TouchEvent)
+    } else {
+      handleMove(e as React.MouseEvent)
+    }
   }
 
   const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault()
 
-    if (!isHovered || !cardRef.current) return
+    if (!isHovered || !cardRef.current || !containerRef.current) return
 
-    // Get coordinates
-    let posX: number, posY: number
-    const width = cardRef.current.clientWidth
-    const height = cardRef.current.clientHeight
+    if (withShadow && !hasShadow) {
+      setHasShadow(true)
+    }
 
-    if (e.type === 'touchmove' || e.type === 'touchstart') {
-      const touchEvent = e as React.TouchEvent
-      const touch = touchEvent.touches[0]
+    if (!hasReflection) {
+      setHasReflection(true)
+    }
+
+    let posX: number
+    let posY: number
+
+    if ('touches' in e) {
+      const touch = e.touches[0]
       const rect = cardRef.current.getBoundingClientRect()
+
       posX = touch.pageX - rect.left
       posY = touch.pageY - rect.top
 
-      // Check if we're still over the card
-      const elementAtPoint = document.elementFromPoint(touch.pageX, touch.pageY)
-      if (!elementAtPoint?.closest('.apple-tv-card')) {
+      const elementFromPoint = document.elementFromPoint(touch.pageX, touch.pageY)
+
+      if (!elementFromPoint || cardRef.current !== elementFromPoint.closest('.glow-card')) {
         handleEnd()
         return
       }
     } else {
-      const mouseEvent = e as React.MouseEvent
-      posX = mouseEvent.nativeEvent.offsetX
-      posY = mouseEvent.nativeEvent.offsetY
+      posX = e.nativeEvent.offsetX
+      posY = e.nativeEvent.offsetY
     }
 
-    // Calculate the effects
-    const halfWidth = width / 2
-    const halfHeight = height / 2
-    const angleY = (halfWidth - posX) / width * 10
-    const angleX = (halfHeight - posY) * -1 / height * 10
-    const translateX = (halfWidth - posX) * -1 / width * 10
-    const translateY = (halfHeight - posY) * -1 / height * 10
+    const width = cardRef.current.clientWidth
+    const height = cardRef.current.clientHeight
+    const angleY = (width / 2 - posX) / width * 10
+    const angleX = (height / 2 - posY) * -1 / height * 10
+    const translateX = ((width / 2 - posX)) * -1 / width * 10
+    const translateY = ((height / 2 - posY)) * -1 / height * 10
 
-    // Update the card transform
-    if (cardRef.current) {
-      cardRef.current.style.transform =
-        `translateZ(4rem) rotateY(${angleY}deg) rotateX(${angleX}deg) translateX(${translateX}px) translateY(${translateY}px)`
+    const perspective = Math.max(width, height)
+
+    containerRef.current.style.perspective = `${perspective * 2.5}px`
+    cardRef.current.style.transform = `translateZ(4rem) rotateY(${angleY}deg) rotateX(${angleX}deg) translateX(${translateX}px) translateY(${translateY}px)`
+
+    const parallaxElements = cardRef.current.querySelectorAll('.parallax-content')
+    parallaxElements.forEach((parallaxContent, layer) => {
+      layer++
+      const modifier = !(parallaxContent as HTMLElement).classList.contains('reverse') ? -.65 : .2;
+      (parallaxContent as HTMLElement).style.transform = `scale(1.075) translateX(${translateX * modifier * layer}px) translateY(${translateY * modifier * layer}px)`
+    })
+
+    if (reflectionRef.current) {
+      reflectionRef.current.style.width = `${perspective * 1.5}px`
+      reflectionRef.current.style.height = `${perspective * 1.5}px`
+      reflectionRef.current.style.margin = `${perspective * -.75}px 0 0 ${perspective * -.75}px`
+      reflectionRef.current.style.transform = `translateY(${posY - (height / 2)}px) translateX(${(width * .1) + (posX * .8)}px)`
     }
 
-    // Update parallax layers
-    if (cardRef.current) {
-      const layers = cardRef.current.querySelectorAll<HTMLDivElement>('.parallax-layer')
-      layers.forEach((layer, index) => {
-        const layerNumber = index + 1
-        const isReverse = layer.dataset.reverse === 'true'
-        const modifier = isReverse ? 0.2 : -0.65
-
-        layer.style.transform =
-          `scale(1.075) translateX(${translateX * modifier * layerNumber}px) translateY(${translateY * modifier * layerNumber}px)`
-      })
-    }
-
-    // Update reflection
-    if (cardRef.current) {
-      const reflectionElement = cardRef.current.querySelector<HTMLDivElement>('.reflection')
-      if (reflectionElement) {
-        const size = Math.max(width, height)
-
-        reflectionElement.style.width = `${size * 1.5}px`
-        reflectionElement.style.height = `${size * 1.5}px`
-        reflectionElement.style.margin = `${size * -0.75}px 0 0 ${size * -0.75}px`
-        reflectionElement.style.transform =
-          `translateY(${posY - halfHeight}px) translateX(${(width * 0.1) + (posX * 0.8)}px)`
-      }
-    }
-
-    // Update shadow
-    if (cardRef.current) {
-      const shadowElement = cardRef.current.querySelector<HTMLDivElement>('.shadow')
-      if (shadowElement && posY < height / 3) {
-        const heightThird = height / 3
-        const opacity = 1 / heightThird * (heightThird - posY)
-
-        shadowElement.style.opacity = opacity.toString()
-        shadowElement.style.boxShadow =
-          `inset 0 ${opacity * -1}em 0.4em -0.5em rgba(0,0,0,${Math.min(opacity, 0.35)})`
-      } else if (shadowElement) {
-        shadowElement.style.opacity = ''
-        shadowElement.style.boxShadow = ''
+    if (shadowRef.current) {
+      if (posY < height / 3) {
+        const opacity = 1 / (height / 3) * ((height / 3) - posY)
+        shadowRef.current.style.opacity = opacity.toString()
+        shadowRef.current.style.boxShadow = `inset 0 ${opacity * -1}em .4em -.5em rgba(0,0,0,${Math.min(opacity, .35)})`
+      } else {
+        shadowRef.current.style.opacity = ''
+        shadowRef.current.style.boxShadow = ''
       }
     }
   }
 
   const handleEnd = () => {
+    if (contentRef.current) {
+      contentRef.current.blur()
+    }
+
+    cleanup()
+  }
+
+  const cleanup = () => {
     setIsHovered(false)
-    contentRef.current?.blur()
 
     if (cardRef.current) {
-      // Reset all transforms
       cardRef.current.style.transform = ''
 
-      const layers = cardRef.current.querySelectorAll<HTMLDivElement>('.parallax-layer')
-      layers.forEach(layer => {
-        layer.style.transform = ''
+      const parallaxElements = cardRef.current.querySelectorAll('.parallax-content')
+      parallaxElements.forEach((parallaxContent) => {
+        (parallaxContent as HTMLElement).style.transform = ''
       })
+    }
 
-      const reflection = cardRef.current.querySelector<HTMLDivElement>('.reflection')
-      if (reflection) reflection.style.transform = ''
+    if (reflectionRef.current) {
+      reflectionRef.current.style.transform = ''
+    }
 
-      const shadow = cardRef.current.querySelector<HTMLDivElement>('.shadow')
-      if (shadow) {
-        shadow.style.opacity = ''
-        shadow.style.boxShadow = ''
-      }
+    if (shadowRef.current) {
+      shadowRef.current.style.boxShadow = ''
+      shadowRef.current.style.opacity = ''
     }
   }
 
   return (
     <Box
+      className='glow-card-container'
       ref={containerRef}
       pos='relative'
       w='100%'
-      pb={title ? '3.5rem' : '0'}
     >
       <Box
-        className='apple-tv-card'
-        ref={ref}
+        className={`glow-card ${isHovered ? 'hover' : ''}`}
+        ref={cardRef}
         pos='relative'
         zIndex={0}
         overflow='hidden'
         w='100%'
-        fontSize={fontSize}
         borderRadius={notRounded ? '0' : 'min(max(2vmax, 2rem), 3rem)'}
-        shadow={isHovered ? '0 1.5rem 2rem 0.25rem rgba(0, 0, 0, 0.5)' : '0 0.25rem 0.25rem rgba(0, 0, 0, 0.2)'}
-        transform={isHovered ? 'translateZ(4rem)' : ''}
+        shadow={isHovered ? '0 1.5rem 2rem .25rem #0005' : '0 .25rem .25rem #0002'}
         transformOrigin='50%'
         transition='transform 50ms ease-in-out'
         onMouseEnter={handleStart}
@@ -262,37 +229,36 @@ const GlowCard = forwardRef<HTMLDivElement, AppleTVCardProps>((props, ref) => {
         transformStyle='preserve-3d'
         {...rest}
       >
-        {/* Shadow effect */}
-        {showShadow && (
+        {hasShadow && withShadow && (
           <Box
             className='shadow'
+            ref={shadowRef}
             pos='absolute'
             zIndex={3}
             top='0'
             right='0'
             bottom='0'
             left='0'
-            bg='rgba(0, 0, 0, 0.2)'
+            bg='#0002'
             opacity='0'
             pointerEvents='none'
           />
         )}
 
-        {/* Reflection effect */}
-        {showReflection && (
+        {hasReflection && (
           <Box
             className='reflection'
+            ref={reflectionRef}
             pos='absolute'
             zIndex={4}
             top='0'
             left='0'
-            bgImage='radial-gradient(rgba(255, 255, 255, 0.7), transparent 70%)'
+            bgImage='radial-gradient(#fff7, transparent 70%)'
             transform='translateY(-100%)'
             pointerEvents='none'
           />
         )}
 
-        {/* Main content */}
         <Box
           className='content'
           ref={contentRef}
@@ -310,29 +276,15 @@ const GlowCard = forwardRef<HTMLDivElement, AppleTVCardProps>((props, ref) => {
           bgPosition='center center'
           border='none'
           outline='none'
-          onBlur={handleEnd}
+          onBlur={handleBlur}
           onFocus={handleFocus}
           tabIndex={0}
         >
           {children}
         </Box>
-
-        {/* Parallax layers */}
-        {parallaxLayers.map((layer, index) => (
-          <ParallaxLayer
-            key={index}
-            isReverse={layer && typeof layer === 'object' && 'props' in layer && layer.props?.isReverse}
-          >
-            {layer}
-          </ParallaxLayer>
-        ))}
       </Box>
     </Box>
   )
-})
+}
 
 export default GlowCard
-
-// Set display names for components
-ParallaxLayer.displayName = 'ParallaxLayer'
-GlowCard.displayName = 'GlowCard'
