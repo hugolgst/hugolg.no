@@ -1,5 +1,7 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 
+import GlowCard from '@/components/GlowCard'
+
 interface PhotographyCardProps {
   title: string
   description?: string
@@ -7,31 +9,33 @@ interface PhotographyCardProps {
 }
 
 const PhotographyCard = ({ title, description, backgroundImageSrc }: PhotographyCardProps) => {
-  // eslint-disable-next-line chakra-ui/props-shorthand
-  return <Flex
-    pos='relative'
-    direction='column'
-    flex='1'
-    flexShrink='0'
-    overflow='hidden'
-    w='50%'
-    minH='400px'
-    bgImage={`url("${backgroundImageSrc}")`}
-    bgSize='cover'
-    backgroundPosition='center'
-    borderRadius='25px'
-    cursor='pointer'
-    bgColor={backgroundImageSrc ? undefined : 'gray.100'}
-  >
+  return <GlowCard title={title}>
+    {/* eslint-disable-next-line chakra-ui/props-shorthand */}
     <Flex
-      justify='center'
+      pos='relative'
       direction='column'
-      w='100%'
+      flex='1'
+      flexShrink='0'
+      overflow='hidden'
+      w='50%'
+      minH='400px'
+      bgImage={`url("${backgroundImageSrc}")`}
+      bgSize='cover'
+      backgroundPosition='center'
+      borderRadius='25px'
+      cursor='pointer'
+      bgColor={backgroundImageSrc ? undefined : 'gray.100'}
     >
-      <Heading>{title}</Heading>
-      <Text>{description}</Text>
+      <Flex
+        justify='center'
+        direction='column'
+        w='100%'
+      >
+        <Heading>{title}</Heading>
+        <Text>{description}</Text>
+      </Flex>
     </Flex>
-  </Flex>
+  </GlowCard>
 }
 
 export default PhotographyCard
