@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Animate from '@/components/Animate'
 import LanguageMap from '@/components/LanguageMap'
 import Badge from '@/components/miscellaneous/Badge'
-import Particles from '@/components/particles'
 import PhotographyCard from '@/components/PhotographyCard'
 import ProjectCard from '@/components/ProjectCard'
 import { libreBaskerville } from '@/providers'
@@ -30,7 +29,7 @@ const HomePage = () => {
         w='100vw'
         h='100vh'
       >
-        <Particles />
+        {/* <Particles /> */}
       </Box>
 
       <Flex
