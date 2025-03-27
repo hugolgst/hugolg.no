@@ -1,15 +1,14 @@
-import { Flex, Heading, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
+import { PropsWithChildren } from 'react'
 
 import GlowCard from '@/components/GlowCard'
 
-interface PhotographyCardProps {
-  title: string
-  description?: string
+interface PhotographyCardProps extends PropsWithChildren {
   backgroundImageSrc: string
 }
 
-const PhotographyCard = ({ title, description, backgroundImageSrc }: PhotographyCardProps) => {
-  return <GlowCard title={title}>
+const PhotographyCard = ({ children, backgroundImageSrc }: PhotographyCardProps) => {
+  return <GlowCard>
     {/* eslint-disable-next-line chakra-ui/props-shorthand */}
     <Flex
       pos='relative'
@@ -17,7 +16,7 @@ const PhotographyCard = ({ title, description, backgroundImageSrc }: Photography
       flex='1'
       flexShrink='0'
       overflow='hidden'
-      w='50%'
+      w='100%'
       minH='400px'
       bgImage={`url("${backgroundImageSrc}")`}
       bgSize='cover'
@@ -26,14 +25,7 @@ const PhotographyCard = ({ title, description, backgroundImageSrc }: Photography
       cursor='pointer'
       bgColor={backgroundImageSrc ? undefined : 'gray.100'}
     >
-      <Flex
-        justify='center'
-        direction='column'
-        w='100%'
-      >
-        <Heading>{title}</Heading>
-        <Text>{description}</Text>
-      </Flex>
+      {children}
     </Flex>
   </GlowCard>
 }

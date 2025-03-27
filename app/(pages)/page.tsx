@@ -7,7 +7,9 @@ import Animate from '@/components/Animate'
 import LanguageMap from '@/components/LanguageMap'
 import Badge from '@/components/miscellaneous/Badge'
 import Particles from '@/components/particles'
+import PhotographyCard from '@/components/PhotographyCard'
 import ProjectCard from '@/components/ProjectCard'
+import { libreBaskerville } from '@/providers'
 
 const HomePage = () => {
   return <Flex
@@ -137,42 +139,36 @@ const HomePage = () => {
           linearBlurTint='rgba(0,0,0,0.5)'
           url='https://norlys.live'
         >
-          <Flex
-            direction='column'
-            h='100%'
-            color='gray.300'
+          <Spacer />
+
+          <Heading
+            mb='10px'
+            color='white'
+            fontSize='1.6em'
           >
-            <Spacer />
+            Founded and built the entire software
+          </Heading>
 
-            <Heading
-              mb='10px'
-              color='white'
-              fontSize='1.6em'
-            >
-              Founded and built the entire software
-            </Heading>
+          <Text color='gray.300'>
+            <chakra.span fontWeight='bold'>Machine Learning model</chakra.span>
+            {' '}
+            nowcasting the aurora borealis
+            and australis in near-realtime.
+          </Text>
+          <Text color='gray.300'>
+            Features various data figures used by aurora chasers and scientists across the globe.
+          </Text>
 
-            <Text>
-              <chakra.span fontWeight='bold'>Machine Learning model</chakra.span>
-              {' '}
-              nowcasting the aurora borealis
-              and australis in near-realtime.
-            </Text>
-            <Text>
-              Features various data figures used by aurora chasers and scientists across the globe.
-            </Text>
-
-            <Flex
-              w='fit-content'
-              mt='20px'
-              p='5px 15px'
-              color='primary.500'
-              fontWeight='semibold'
-              borderRadius='full'
-              bgColor='primary.400/30'
-            >
-              15{'\''}000 unique monthly users
-            </Flex>
+          <Flex
+            w='fit-content'
+            mt='20px'
+            p='5px 15px'
+            color='primary.500'
+            fontWeight='semibold'
+            borderRadius='full'
+            bgColor='primary.400/30'
+          >
+            15{'\''}000 unique monthly users
           </Flex>
         </ProjectCard>
       </Animate>
@@ -237,6 +233,231 @@ const HomePage = () => {
     <Animate delay={0}>
       <LanguageMap />
     </Animate>
+
+    <Box id='photography' />
+
+    <Flex
+      direction='column'
+      gap='50px'
+      w='100vw'
+      p='20px 15%'
+    >
+      <Animate delay={0}>
+        <Heading
+          fontSize='4em'
+          lineHeight='100px'
+        >
+          My photographs
+        </Heading>
+      </Animate>
+
+      <Flex
+        wrap='wrap'
+        flexShrink='0'
+        gap='50px'
+        w='100%'
+      >
+        <Animate
+          delay={0.2}
+          flexShrink='0'
+          w='calc(50% - 25px)'
+        >
+          <PhotographyCard backgroundImageSrc='/assets/arctic-cover.jpg'>
+            <Flex
+              align='center'
+              justify='center'
+              direction='column'
+              w='100%'
+              pt='70px'
+              pointerEvents='none'
+            >
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='2.4em'
+                letterSpacing='0.4em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                The Arctic
+              </Heading>
+            </Flex>
+          </PhotographyCard>
+        </Animate>
+
+        <Animate
+          delay={0.2}
+          flexShrink='0'
+          w='calc(50% - 25px)'
+        >
+          <PhotographyCard backgroundImageSrc='/assets/us-cover.jpg'>
+            <Flex
+              pos='absolute'
+              bottom='40px'
+              align='center'
+              justify='center'
+              direction='column'
+              gap='10px'
+              w='100%'
+              pointerEvents='none'
+            >
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='1.8em'
+                letterSpacing='0.2em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                Along The Colorado
+              </Heading>
+
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='1.2em'
+                letterSpacing='0.2em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                2024
+              </Heading>
+            </Flex>
+          </PhotographyCard>
+        </Animate>
+
+        <Animate
+          delay={0.4}
+          flexShrink='0'
+          w='calc(50% - 25px)'
+        >
+          <PhotographyCard backgroundImageSrc='/assets/iceland-cover.jpg'>
+            <Flex
+              pos='absolute'
+              top='80px'
+              align='center'
+              justify='center'
+              direction='column'
+              gap='10px'
+              w='100%'
+              pointerEvents='none'
+            >
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='2.6em'
+                letterSpacing='0.4em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                Iceland
+              </Heading>
+
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='1.2em'
+                letterSpacing='0.2em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                2023
+              </Heading>
+            </Flex>
+          </PhotographyCard>
+        </Animate>
+
+        <Animate
+          delay={0.4}
+          flexShrink='0'
+          w='calc(50% - 25px)'
+        >
+          <PhotographyCard backgroundImageSrc='/assets/tahiti-cover.jpg'>
+            <Flex
+              pos='absolute'
+              top='50%'
+              left='50%'
+              align='center'
+              justify='center'
+              direction='column'
+              w='100%'
+              transform='translate(-50%, -50%)'
+              pointerEvents='none'
+            >
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='1em'
+                letterSpacing='0.4em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                French Polynesia
+              </Heading>
+            </Flex>
+          </PhotographyCard>
+        </Animate>
+
+        <Animate
+          delay={0.6}
+          flexShrink='0'
+          w='calc(50% - 25px)'
+        >
+          <PhotographyCard backgroundImageSrc='/assets/hawaii-cover.jpg'>
+            <Flex
+              pos='absolute'
+              top='50px'
+              align='center'
+              justify='center'
+              direction='column'
+              w='100%'
+              pointerEvents='none'
+            >
+              <Heading
+                className={libreBaskerville.className}
+                color='black'
+                fontSize='2.5em'
+                letterSpacing='0.4em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                Hawai'i
+              </Heading>
+            </Flex>
+          </PhotographyCard>
+        </Animate>
+
+        <Animate
+          delay={0.6}
+          flexShrink='0'
+          w='calc(50% - 25px)'
+        >
+          <PhotographyCard backgroundImageSrc='/assets/switzerland-cover.jpg'>
+            <Flex
+              pos='absolute'
+              top='30px'
+              align='center'
+              justify='center'
+              direction='column'
+              w='100%'
+              pointerEvents='none'
+            >
+              <Heading
+                className={libreBaskerville.className}
+                color='white'
+                fontSize='1.8em'
+                letterSpacing='0.4em'
+                textTransform='uppercase'
+                transform='scale(1.2, 1)'
+              >
+                Switzerland
+              </Heading>
+            </Flex>
+          </PhotographyCard>
+        </Animate>
+      </Flex>
+
+    </Flex>
 
     <Animate delay={0}>
       <Flex

@@ -1,8 +1,19 @@
+import { Box, BoxProps } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
-const Animate = ({ delay, children }: PropsWithChildren<{ delay: number }>) => {
-  return <motion.div
+const MotionBox = motion(Box)
+
+interface AnimateProps extends PropsWithChildren, BoxProps {
+  delay: number
+}
+
+const Animate = ({
+  delay,
+  children,
+  ...props
+}: AnimateProps) => {
+  return <MotionBox
     initial='hidden'
     whileInView='visible'
     viewport={{ once: true }}
@@ -11,9 +22,10 @@ const Animate = ({ delay, children }: PropsWithChildren<{ delay: number }>) => {
       visible: { y: 0, opacity: 1 },
       hidden: { y: 30, opacity: 0 }
     }}
+    {...props}
   >
     {children}
-  </motion.div>
+  </MotionBox>
 }
 
 export default Animate

@@ -58,9 +58,9 @@ const ProjectCard = ({
     >
       <Flex
         direction='column'
-        gap='10px'
-        w='40%'
-        h='100%'
+        gap='5px'
+        w='50%'
+        h='350px'
       >
         <Flex
           direction='column'
