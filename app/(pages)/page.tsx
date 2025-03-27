@@ -327,7 +327,7 @@ const HomePage = () => {
         </Animate>
 
         <Animate
-          delay={0.4}
+          delay={0.2}
           flexShrink='0'
           w='calc(50% - 25px)'
         >
@@ -368,7 +368,7 @@ const HomePage = () => {
         </Animate>
 
         <Animate
-          delay={0.4}
+          delay={0.2}
           flexShrink='0'
           w='calc(50% - 25px)'
         >
@@ -399,7 +399,7 @@ const HomePage = () => {
         </Animate>
 
         <Animate
-          delay={0.6}
+          delay={0.2}
           flexShrink='0'
           w='calc(50% - 25px)'
         >
@@ -428,7 +428,7 @@ const HomePage = () => {
         </Animate>
 
         <Animate
-          delay={0.6}
+          delay={0.2}
           flexShrink='0'
           w='calc(50% - 25px)'
         >

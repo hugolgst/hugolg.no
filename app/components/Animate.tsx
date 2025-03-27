@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react'
 
 const MotionBox = motion(Box)
 
-interface AnimateProps extends PropsWithChildren, BoxProps {
+interface AnimateProps extends PropsWithChildren, Omit<BoxProps, 'transition'> {
   delay: number
 }
 
@@ -13,6 +13,7 @@ const Animate = ({
   children,
   ...props
 }: AnimateProps) => {
+  // @ts-expect-error tekjt
   return <MotionBox
     initial='hidden'
     whileInView='visible'

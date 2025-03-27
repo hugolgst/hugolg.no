@@ -12,12 +12,12 @@ const NAVIGATION_ITEMS: Array<NavigationItem> = [
   { id: 'home', label: 'Home' },
   { id: 'projects', label: 'Projects' },
   { id: 'languages', label: 'Languages' },
-  { id: 'portfolio', label: 'Portfolio' },
+  { id: 'photography', label: 'Photographs' },
   { id: 'contact', label: 'Contact' }
 ]
 
 // Fixed item width in pixels
-const ITEM_WIDTH = '120px'
+const ITEM_WIDTH = '140px'
 
 // Generate dynamic styles based on navigation items count
 const generateActiveStyles = () => {
