@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Animate from '@/components/Animate'
 import LanguageMap from '@/components/LanguageMap'
 import Badge from '@/components/miscellaneous/Badge'
+import Particles from '@/components/particles'
 import PhotographyCard from '@/components/PhotographyCard'
 import ProjectCard from '@/components/ProjectCard'
 import { libreBaskerville } from '@/providers'
@@ -29,7 +30,7 @@ const HomePage = () => {
         w='100vw'
         h='100vh'
       >
-        {/* <Particles /> */}
+        <Particles />
       </Box>
 
       <Flex
@@ -261,7 +262,34 @@ const HomePage = () => {
           flexShrink='0'
           w='calc(50% - 25px)'
         >
-          <PhotographyCard backgroundImageSrc='/assets/arctic-cover.jpg'>
+          <PhotographyCard
+            backgroundImageSrc='/assets/arctic-cover.jpg'
+            images={[
+              '/assets/arctic/1.jpg',
+              '/assets/arctic/2.jpg',
+              '/assets/arctic/3.jpg',
+              '/assets/arctic/4.jpg',
+              '/assets/arctic/5.jpg',
+              '/assets/arctic/6.jpg',
+              '/assets/arctic/7.jpg',
+              '/assets/arctic/8.jpg',
+              '/assets/arctic/9.jpg',
+              '/assets/arctic/10.jpg',
+              '/assets/arctic/11.jpg',
+              '/assets/arctic/12.jpg',
+              '/assets/arctic/13.jpg',
+              '/assets/arctic/14.jpg',
+              '/assets/arctic/15.jpg',
+              '/assets/arctic/16.jpg',
+              '/assets/arctic/17.jpg',
+              '/assets/arctic/18.jpg',
+              '/assets/arctic/19.jpg',
+              '/assets/arctic/20.jpg',
+              '/assets/arctic/21.jpg',
+              '/assets/arctic/23.jpg',
+              '/assets/arctic/24.jpg'
+            ]}
+          >
             <Flex
               align='center'
               justify='center'
@@ -289,7 +317,10 @@ const HomePage = () => {
           flexShrink='0'
           w='calc(50% - 25px)'
         >
-          <PhotographyCard backgroundImageSrc='/assets/us-cover.jpg'>
+          <PhotographyCard
+            backgroundImageSrc='/assets/us-cover.jpg'
+            images={new Array(18).fill(0).map((_, index) => `/assets/us/${index + 1}.jpg`)}
+          >
             <Flex
               pos='absolute'
               bottom='40px'
@@ -330,7 +361,10 @@ const HomePage = () => {
           flexShrink='0'
           w='calc(50% - 25px)'
         >
-          <PhotographyCard backgroundImageSrc='/assets/iceland-cover.jpg'>
+          <PhotographyCard
+            backgroundImageSrc='/assets/iceland-cover.jpg'
+            images={new Array(18).fill(0).map((_, index) => `/assets/iceland/${index + 1}.jpg`)}
+          >
             <Flex
               pos='absolute'
               top='80px'
@@ -371,7 +405,10 @@ const HomePage = () => {
           flexShrink='0'
           w='calc(50% - 25px)'
         >
-          <PhotographyCard backgroundImageSrc='/assets/tahiti-cover.jpg'>
+          <PhotographyCard
+            backgroundImageSrc='/assets/tahiti-cover.jpg'
+            images={new Array(13).fill(0).map((_, index) => `/assets/tahiti/${index + 1}.jpg`)}
+          >
             <Flex
               pos='absolute'
               top='50%'
@@ -402,7 +439,10 @@ const HomePage = () => {
           flexShrink='0'
           w='calc(50% - 25px)'
         >
-          <PhotographyCard backgroundImageSrc='/assets/hawaii-cover.jpg'>
+          <PhotographyCard
+            backgroundImageSrc='/assets/hawaii-cover.jpg'
+            images={new Array(12).fill(0).map((_, index) => `/assets/hawaii/${index + 1}.jpg`)}
+          >
             <Flex
               pos='absolute'
               top='50px'
@@ -420,7 +460,7 @@ const HomePage = () => {
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
               >
-                Hawai'i
+                Hawai{'\''}i
               </Heading>
             </Flex>
           </PhotographyCard>
@@ -431,7 +471,10 @@ const HomePage = () => {
           flexShrink='0'
           w='calc(50% - 25px)'
         >
-          <PhotographyCard backgroundImageSrc='/assets/switzerland-cover.jpg'>
+          <PhotographyCard
+            backgroundImageSrc='/assets/switzerland-cover.jpg'
+            images={new Array(14).fill(0).map((_, index) => `/assets/switzerland/${index + 1}.jpg`)}
+          >
             <Flex
               pos='absolute'
               top='30px'
@@ -458,6 +501,7 @@ const HomePage = () => {
 
     </Flex>
 
+    <Box id='contact' />
     <Animate delay={0}>
       <Flex
         align='center'

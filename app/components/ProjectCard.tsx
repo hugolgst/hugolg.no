@@ -2,8 +2,6 @@ import { Flex, Heading, Image, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 
-import LinearBlur from '@/components/miscellaneous/LinearBlur'
-
 interface ProjectCardProps extends PropsWithChildren {
   title: string
   logoSrc?: string
@@ -43,13 +41,6 @@ const ProjectCard = ({
     bgColor={backgroundImageSrc ? undefined : 'gray.100'}
     onClick={() => url && router.push(url)}
   >
-    <LinearBlur
-      side='left'
-      tint={linearBlurTint}
-      width='80%'
-      height='100%'
-    />
-
     <Flex
       zIndex={1}
       w='100%'
@@ -59,7 +50,7 @@ const ProjectCard = ({
       <Flex
         direction='column'
         gap='5px'
-        w='50%'
+        w='40%'
         h='350px'
       >
         <Flex
