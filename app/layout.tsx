@@ -4,24 +4,19 @@ import Providers from '@/providers'
 
 export const metadata: Metadata = {
   title: 'Hugo Lageneste',
-  description: 'Portfolio'
-
-  // icons: [
-  //   { rel: 'apple-touch-icon', url: '/images/icon512_maskable.png' },
-  //   { rel: 'icon', url: '/images/icon512_maskable.png' },
-  // ],
-  // openGraph: {
-  //   url: '',
-  //   images: [
-  //     {
-  //       url: '',
-  //       width: 1200,
-  //       height: 630,
-  //     },
-  //   ],
-  //   locale: 'en_US',
-  //   type: 'website',
-  // },
+  description: 'Portfolio',
+  openGraph: {
+    url: 'https://hugolg.no',
+    images: [
+      {
+        url: '/assets/open-graph.png',
+        width: 1200,
+        height: 630
+      }
+    ],
+    locale: 'en_US',
+    type: 'website'
+  }
 }
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
