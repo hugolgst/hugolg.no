@@ -136,7 +136,6 @@ const HomePage = () => {
           logoSrc='/assets/norlys-logo.svg'
           backgroundImageSrc='/assets/norlys-background.png'
           color='white'
-          linearBlurTint='rgba(0,0,0,0.5)'
           url='https://norlys.live'
         >
           <Spacer />
@@ -151,8 +150,7 @@ const HomePage = () => {
 
           <Text
             color='gray.300'
-
-            fontSize={{ base: '1.2em', md: '1.6em' }}
+            fontSize={{ base: '1em', md: '1.2em' }}
           >
             <chakra.span fontWeight='bold'>Machine Learning model</chakra.span>
             {' '}
@@ -161,8 +159,7 @@ const HomePage = () => {
           </Text>
           <Text
             color='gray.300'
-
-            fontSize={{ base: '1.2em', md: '1.6em' }}
+            fontSize={{ base: '1em', md: '1.2em' }}
           >
             Features various data figures used by aurora chasers and scientists across the globe.
           </Text>
@@ -202,7 +199,7 @@ const HomePage = () => {
               Wrote scientific paper and implemented it
             </Heading>
 
-            <Text fontSize={{ base: '1.2em', md: '1.6em' }}>
+            <Text fontSize={{ base: '1em', md: '1.2em' }}>
               Wrote Machine Learning model backpropagation from scratch with no
               libraries in Golang at 16 years old.
             </Text>

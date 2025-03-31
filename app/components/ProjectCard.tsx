@@ -1,6 +1,8 @@
-import { Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { PropsWithChildren } from 'react'
+
+import Device from '@/components/Device'
 
 interface ProjectCardProps extends PropsWithChildren {
   title: string
@@ -8,7 +10,6 @@ interface ProjectCardProps extends PropsWithChildren {
   backgroundImageSrc?: string
   url?: string
   color?: string
-  linearBlurTint?: string
   span: string
 }
 
@@ -18,13 +19,11 @@ const ProjectCard = ({
   backgroundImageSrc,
   url,
   color = 'black',
-  linearBlurTint = 'transparent',
   span,
   children
 }: ProjectCardProps) => {
   const router = useRouter()
 
-  // eslint-disable-next-line chakra-ui/props-shorthand
   return <Flex
     pos='relative'
     direction='column'
@@ -33,14 +32,34 @@ const ProjectCard = ({
     overflow='hidden'
     w='100%'
     minH='400px'
-    bgImage={`url("${backgroundImageSrc}")`}
-    bgSize='cover'
-    backgroundPosition='center'
     borderRadius='25px'
     cursor='pointer'
-    bgColor={backgroundImageSrc ? undefined : 'gray.100'}
     onClick={() => url && router.push(url)}
   >
+    {/*  eslint-disable-next-line chakra-ui/props-shorthand*/}
+    <Box
+      pos='absolute'
+      top='0'
+      flexShrink='0'
+      w='100%'
+      h='100%'
+      bgImage={`url("${backgroundImageSrc}")`}
+      bgSize='cover'
+      backgroundPosition='center'
+      bgColor={backgroundImageSrc ? undefined : 'gray.100'}
+    />
+
+    <Device mobile>
+      <Box
+        pos='absolute'
+        top='0'
+        flexShrink='0'
+        w='100%'
+        h='100%'
+        backdropFilter='blur(20px)'
+      />
+    </Device>
+
     <Flex
       zIndex={1}
       w='100%'

@@ -8,8 +8,7 @@ import { Zoom } from '@visx/zoom'
 import React, { useState, useEffect } from 'react'
 import { feature } from 'topojson-client'
 
-import Device from '../Device'
-
+import Device from '@/components/Device'
 import countries from '@/components/LanguageMap/countries.json'
 import Badge from '@/components/miscellaneous/Badge'
 
