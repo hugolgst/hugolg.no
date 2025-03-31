@@ -29,17 +29,19 @@ const HomePage = () => {
         left='0'
         w='100vw'
         h='100vh'
+        pointerEvents='none'
       >
         <Particles />
       </Box>
 
       <Flex
         pos='absolute'
-        bottom='30px'
-        left={{ base: '20px', md: '10%' }}
         direction='column'
-        w={{ base: 'calc(100% - 10px)', md: '100%' }}
+        w='100vw'
+        h='100vh'
+        p={{ base: '20px', md: '20px 10%' }}
       >
+        <Spacer />
         <Animate delay={0.2}>
           <Text
             color='gray.500'

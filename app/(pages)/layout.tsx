@@ -11,7 +11,7 @@ import NavigationBar from '@/components/NavigationBar'
 const Layout = ({ children }: PropsWithChildren) => (
   <Flex
     pos='relative'
-    overflowX='hidden'
+    overflow='hidden'
   >
     {children}
 
