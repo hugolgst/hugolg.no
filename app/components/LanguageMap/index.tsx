@@ -234,7 +234,7 @@ const LanguageMap = () => {
   return <Flex
     pos='relative'
     w='100vw'
-    p={{ base: '20px', md: '20px 15%' }}
+    p={{ base: '20px', md: '20px 10%' }}
   >
     <Device desktop>
       <Box

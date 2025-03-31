@@ -36,7 +36,7 @@ const HomePage = () => {
       <Flex
         pos='absolute'
         bottom='30px'
-        left={{ base: '20px', md: '15%' }}
+        left={{ base: '20px', md: '10%' }}
         direction='column'
         w={{ base: 'calc(100% - 10px)', md: '100%' }}
       >
@@ -67,7 +67,7 @@ const HomePage = () => {
       direction='column'
       gap='4px'
       w='100vw'
-      p={{ base: '20px', md: '20px 15%' }}
+      p={{ base: '20px', md: '20px 10%' }}
     >
       <Heading
         fontSize={{ base: '3em', md: '4em' }}
@@ -97,6 +97,8 @@ const HomePage = () => {
         and robust to then architecture the software around them!
       </Text>
 
+      <Image src='/assets/experience.svg' />
+
       <Flex
         wrap='wrap'
         direction='row'
@@ -118,7 +120,7 @@ const HomePage = () => {
       direction='column'
       gap='50px'
       w='100vw'
-      p={{ base: '20px', md: '20px 15%' }}
+      p={{ base: '20px', md: '20px 10%' }}
     >
       <Animate delay={0}>
         <Heading
@@ -245,7 +247,7 @@ const HomePage = () => {
       direction='column'
       gap='50px'
       w='100vw'
-      p={{ base: '20px', md: '20px 15%' }}
+      p={{ base: '20px', md: '20px 10%' }}
     >
       <Animate delay={0}>
         <Heading
@@ -517,7 +519,7 @@ const HomePage = () => {
         align='center'
         direction={{ base: 'column', md: 'row' }}
         w='100vw'
-        p='50px 15%'
+        p={{ base: '20px', md: '20px 10%' }}
       >
         <Image
           h='100px'
