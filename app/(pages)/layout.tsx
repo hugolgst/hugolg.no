@@ -4,11 +4,15 @@ import { Box, Flex } from '@chakra-ui/react'
 import { PropsWithChildren } from 'react'
 
 import Animate from '@/components/Animate'
+import Device from '@/components/Device'
 import LinearBlur from '@/components/miscellaneous/LinearBlur'
 import NavigationBar from '@/components/NavigationBar'
 
 const Layout = ({ children }: PropsWithChildren) => (
-  <Flex pos='relative'>
+  <Flex
+    pos='relative'
+    overflowX='hidden'
+  >
     {children}
 
     <Box
@@ -23,9 +27,11 @@ const Layout = ({ children }: PropsWithChildren) => (
       />
     </Box>
 
-    <Animate delay={0.1}>
-      <NavigationBar />
-    </Animate>
+    <Device desktop>
+      <Animate delay={0.1}>
+        <NavigationBar />
+      </Animate>
+    </Device>
   </Flex>
 )
 

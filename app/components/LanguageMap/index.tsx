@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 
@@ -9,6 +7,8 @@ import { scaleOrdinal } from '@visx/scale'
 import { Zoom } from '@visx/zoom'
 import React, { useState, useEffect } from 'react'
 import { feature } from 'topojson-client'
+
+import Device from '../Device'
 
 import countries from '@/components/LanguageMap/countries.json'
 import Badge from '@/components/miscellaneous/Badge'
@@ -235,72 +235,74 @@ const LanguageMap = () => {
   return <Flex
     pos='relative'
     w='100vw'
-    p='20px 15%'
+    p={{ base: '20px', md: '20px 15%' }}
   >
-    <Box
-      overflow='hidden'
-      w='full'
-      maxW='4xl'
-      mx='auto'
-      borderRadius='25px'
-    >
-      <Zoom
-        width={width}
-        height={height}
-        scaleXMin={100}
-        scaleXMax={1000}
-        scaleYMin={100}
-        scaleYMax={1000}
-        initialTransformMatrix={{
-          scaleX: scale,
-          scaleY: scale,
-          translateX: centerX,
-          translateY: centerY,
-          skewX: 0,
-          skewY: 0
-        }}
+    <Device desktop>
+      <Box
+        overflow='hidden'
+        w='full'
+        maxW='4xl'
+        mx='auto'
+        borderRadius='25px'
       >
-        {zoom => (
-          <svg
-            width={width}
-            height={height}
-            viewBox={`0 0 ${width} ${height}`}
-          >
-            <Mercator
-              data={features}
-              scale={zoom.transformMatrix.scaleX}
-              translate={[ zoom.transformMatrix.translateX, zoom.transformMatrix.translateY ]}
+        <Zoom
+          width={width}
+          height={height}
+          scaleXMin={100}
+          scaleXMax={1000}
+          scaleYMin={100}
+          scaleYMax={1000}
+          initialTransformMatrix={{
+            scaleX: scale,
+            scaleY: scale,
+            translateX: centerX,
+            translateY: centerY,
+            skewX: 0,
+            skewY: 0
+          }}
+        >
+          {zoom => (
+            <svg
+              width={width}
+              height={height}
+              viewBox={`0 0 ${width} ${height}`}
             >
-              {mercator => (
-                <g>
-                  {mercator.features.map(({ feature, path }, i) => {
-                    const language = countryData[
-                    // @ts-expect-error it's late
-                      feature.properties.name as keyof typeof countryData
-                    ]
+              <Mercator
+                data={features}
+                scale={zoom.transformMatrix.scaleX}
+                translate={[ zoom.transformMatrix.translateX, zoom.transformMatrix.translateY ]}
+              >
+                {mercator => (
+                  <g>
+                    {mercator.features.map(({ feature, path }, i) => {
+                      const language = countryData[
+                      // @ts-expect-error it's late
+                        feature.properties.name as keyof typeof countryData
+                      ]
 
-                    return (
-                      <path
-                        key={`country-${i}`}
-                        d={path ?? ''}
-                        fill={language ? colorScale(language) : 'transparent'}
-                        stroke='black'
-                        strokeWidth={0.5}
-                      />
-                    )
-                  })}
-                </g>
-              )}
-            </Mercator>
-          </svg>
-        )}
-      </Zoom>
-    </Box>
+                      return (
+                        <path
+                          key={`country-${i}`}
+                          d={path ?? ''}
+                          fill={language ? colorScale(language) : 'transparent'}
+                          stroke='black'
+                          strokeWidth={0.5}
+                        />
+                      )
+                    })}
+                  </g>
+                )}
+              </Mercator>
+            </svg>
+          )}
+        </Zoom>
+      </Box>
+    </Device>
 
     <Flex
       w='100%'
       minH='400px'
-      p='40px'
+      p={{ base: '0', md: '40px' }}
       borderRadius='25px'
     >
       <Flex

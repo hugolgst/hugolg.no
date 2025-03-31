@@ -14,8 +14,8 @@ import { libreBaskerville } from '@/providers'
 const HomePage = () => {
   return <Flex
     direction='column'
-    gap='100px'
-    w='100vh'
+    gap={{ base: '20px', md: '100px' }}
+    w='100vw'
   >
     <Box
       pos='relative'
@@ -36,14 +36,14 @@ const HomePage = () => {
       <Flex
         pos='absolute'
         bottom='30px'
-        left='15%'
+        left={{ base: '20px', md: '15%' }}
         direction='column'
-        w='100%'
+        w={{ base: 'calc(100% - 10px)', md: '100%' }}
       >
         <Animate delay={0.2}>
           <Text
             color='gray.500'
-            fontSize='1.6em'
+            fontSize={{ base: '1.2em', md: '1.6em' }}
             fontWeight='500'
           >
             Software Engineer based in Tromsø, Norway.
@@ -54,7 +54,7 @@ const HomePage = () => {
           <Heading
             flexShrink='0'
             fontSize={{ base: '4em', lg: '6em', xl: '7em' }}
-            lineHeight='180px'
+            lineHeight={{ base: '70px', md: '180px' }}
           >
             Hugo Lageneste
           </Heading>
@@ -67,10 +67,10 @@ const HomePage = () => {
       direction='column'
       gap='4px'
       w='100vw'
-      p='20px 15%'
+      p={{ base: '20px', md: '20px 15%' }}
     >
       <Heading
-        fontSize='4em'
+        fontSize={{ base: '3em', md: '4em' }}
         lineHeight='100px'
       >
         About me
@@ -78,7 +78,7 @@ const HomePage = () => {
 
       <Text
         mt='10px'
-        fontSize='1.6em'
+        fontSize={{ base: '1.2em', md: '1.6em' }}
       >
         Professional Software Engineer since 2020 with strong skills in
         {' '}
@@ -92,7 +92,7 @@ const HomePage = () => {
         <chakra.span fontWeight='bold'>Critical thinking</chakra.span>
         .
       </Text>
-      <Text fontSize='1.6em'>
+      <Text fontSize={{ base: '1.2em', md: '1.6em' }}>
         I enjoy sitting down trying to find ideas that will make a product great
         and robust to then architecture the software around them!
       </Text>
@@ -118,12 +118,12 @@ const HomePage = () => {
       direction='column'
       gap='50px'
       w='100vw'
-      p='20px 15%'
+      p={{ base: '20px', md: '20px 15%' }}
     >
       <Animate delay={0}>
         <Heading
-          fontSize='4em'
-          lineHeight='100px'
+          fontSize={{ base: '3em', md: '4em' }}
+          lineHeight={{ base: '60px', md: '100px' }}
         >
           My latest projects
         </Heading>
@@ -149,13 +149,21 @@ const HomePage = () => {
             Founded and built the entire software
           </Heading>
 
-          <Text color='gray.300'>
+          <Text
+            color='gray.300'
+
+            fontSize={{ base: '1.2em', md: '1.6em' }}
+          >
             <chakra.span fontWeight='bold'>Machine Learning model</chakra.span>
             {' '}
             nowcasting the aurora borealis
             and australis in near-realtime.
           </Text>
-          <Text color='gray.300'>
+          <Text
+            color='gray.300'
+
+            fontSize={{ base: '1.2em', md: '1.6em' }}
+          >
             Features various data figures used by aurora chasers and scientists across the globe.
           </Text>
 
@@ -194,7 +202,7 @@ const HomePage = () => {
               Wrote scientific paper and implemented it
             </Heading>
 
-            <Text>
+            <Text fontSize={{ base: '1.2em', md: '1.6em' }}>
               Wrote Machine Learning model backpropagation from scratch with no
               libraries in Golang at 16 years old.
             </Text>
@@ -240,12 +248,12 @@ const HomePage = () => {
       direction='column'
       gap='50px'
       w='100vw'
-      p='20px 15%'
+      p={{ base: '20px', md: '20px 15%' }}
     >
       <Animate delay={0}>
         <Heading
-          fontSize='4em'
-          lineHeight='100px'
+          fontSize={{ base: '3em', md: '4em' }}
+          lineHeight={{ base: '60px', md: '100px' }}
         >
           My photographs
         </Heading>
@@ -260,7 +268,7 @@ const HomePage = () => {
         <Animate
           delay={0.2}
           flexShrink='0'
-          w='calc(50% - 25px)'
+          w={{ base: 'calc(100vw - 40px)', md: 'calc(50% - 25px)' }}
         >
           <PhotographyCard
             backgroundImageSrc='/assets/arctic-cover.jpg'
@@ -291,18 +299,21 @@ const HomePage = () => {
             ]}
           >
             <Flex
+              pos='absolute'
+              top='70px'
               align='center'
               justify='center'
               direction='column'
               w='100%'
-              pt='70px'
               pointerEvents='none'
             >
               <Heading
                 className={libreBaskerville.className}
                 color='white'
                 fontSize='2.4em'
+                lineHeight='50px'
                 letterSpacing='0.4em'
+                textAlign='center'
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
               >
@@ -315,7 +326,7 @@ const HomePage = () => {
         <Animate
           delay={0.2}
           flexShrink='0'
-          w='calc(50% - 25px)'
+          w={{ base: 'calc(100vw - 40px)', md: 'calc(50% - 25px)' }}
         >
           <PhotographyCard
             backgroundImageSrc='/assets/us-cover.jpg'
@@ -335,7 +346,9 @@ const HomePage = () => {
                 className={libreBaskerville.className}
                 color='white'
                 fontSize='1.8em'
+                lineHeight='50px'
                 letterSpacing='0.2em'
+                textAlign='center'
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
               >
@@ -359,7 +372,7 @@ const HomePage = () => {
         <Animate
           delay={0.2}
           flexShrink='0'
-          w='calc(50% - 25px)'
+          w={{ base: 'calc(100vw - 40px)', md: 'calc(50% - 25px)' }}
         >
           <PhotographyCard
             backgroundImageSrc='/assets/iceland-cover.jpg'
@@ -378,7 +391,7 @@ const HomePage = () => {
               <Heading
                 className={libreBaskerville.className}
                 color='white'
-                fontSize='2.6em'
+                fontSize={{ base:'2em', md: '2.6em' }}
                 letterSpacing='0.4em'
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
@@ -403,7 +416,7 @@ const HomePage = () => {
         <Animate
           delay={0.2}
           flexShrink='0'
-          w='calc(50% - 25px)'
+          w={{ base: 'calc(100vw - 40px)', md: 'calc(50% - 25px)' }}
         >
           <PhotographyCard
             backgroundImageSrc='/assets/tahiti-cover.jpg'
@@ -423,7 +436,7 @@ const HomePage = () => {
               <Heading
                 className={libreBaskerville.className}
                 color='white'
-                fontSize='1em'
+                fontSize={{ base: '0.8em', md: '1em' }}
                 letterSpacing='0.4em'
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
@@ -437,7 +450,7 @@ const HomePage = () => {
         <Animate
           delay={0.2}
           flexShrink='0'
-          w='calc(50% - 25px)'
+          w={{ base: 'calc(100vw - 40px)', md: 'calc(50% - 25px)' }}
         >
           <PhotographyCard
             backgroundImageSrc='/assets/hawaii-cover.jpg'
@@ -455,7 +468,7 @@ const HomePage = () => {
               <Heading
                 className={libreBaskerville.className}
                 color='black'
-                fontSize='2.5em'
+                fontSize={{ base: '2em', md: '2.5em' }}
                 letterSpacing='0.4em'
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
@@ -469,7 +482,7 @@ const HomePage = () => {
         <Animate
           delay={0.2}
           flexShrink='0'
-          w='calc(50% - 25px)'
+          w={{ base: 'calc(100vw - 40px)', md: 'calc(50% - 25px)' }}
         >
           <PhotographyCard
             backgroundImageSrc='/assets/switzerland-cover.jpg'
@@ -487,7 +500,7 @@ const HomePage = () => {
               <Heading
                 className={libreBaskerville.className}
                 color='white'
-                fontSize='1.8em'
+                fontSize={{ base: '1.2em', md: '1.8em' }}
                 letterSpacing='0.4em'
                 textTransform='uppercase'
                 transform='scale(1.2, 1)'
@@ -505,6 +518,7 @@ const HomePage = () => {
     <Animate delay={0}>
       <Flex
         align='center'
+        direction={{ base: 'column', md: 'row' }}
         w='100vw'
         p='50px 15%'
       >

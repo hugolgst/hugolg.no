@@ -50,8 +50,8 @@ const ProjectCard = ({
       <Flex
         direction='column'
         gap='5px'
-        w='40%'
-        h='350px'
+        w={{ base: '100%', md: '40%' }}
+        h={{ base: '500px', md: '350px' }}
       >
         <Flex
           direction='column'
