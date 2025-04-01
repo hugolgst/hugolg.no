@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     url: 'https://hugolg.no',
     images: [
       {
-        url: '/assets/open-graph.png',
+        url: 'https://hugolg.no/assets/open-graph.png',
         width: 1200,
         height: 630
       }
