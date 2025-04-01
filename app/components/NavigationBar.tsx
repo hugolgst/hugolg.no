@@ -10,6 +10,7 @@ interface NavigationItem {
 // Store navigation items in a single place
 const NAVIGATION_ITEMS: Array<NavigationItem> = [
   { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About me' },
   { id: 'projects', label: 'Projects' },
   { id: 'languages', label: 'Languages' },
   { id: 'photography', label: 'Photographs' },
