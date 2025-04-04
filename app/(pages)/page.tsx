@@ -82,21 +82,28 @@ const HomePage = () => {
         mt='10px'
         fontSize={{ base: '1.2em', md: '1.6em' }}
       >
-        Professional Software Engineer since 2020 with strong skills in
+        I’m a Professional Software Engineer since 2020, passionate about building well-architected,
+        maintainable systems. My strengths lie in
         {' '}
         <chakra.span fontWeight='semibold'>Software Architecture</chakra.span>
         ,
         {' '}
-        <chakra.span fontWeight='bold'>Clean code</chakra.span>
+        <chakra.span fontWeight='bold'>Clean Code principles</chakra.span>
         {' '}
         and
         {' '}
-        <chakra.span fontWeight='bold'>Critical thinking</chakra.span>
+        <chakra.span fontWeight='bold'>Critical Thinking</chakra.span>
         .
       </Text>
-      <Text fontSize={{ base: '1.2em', md: '1.6em' }}>
-        I enjoy sitting down trying to find ideas that will make a product great
-        and robust to then architecture the software around them!
+
+      <Text
+        mt='20px'
+        fontSize={{ base: '1.2em', md: '1.6em' }}
+      >
+        I genuinely enjoy the process of sitting down, exploring ideas that could make a product
+        truly great, and then designing the software in a way that’s both robust and elegant.
+        For me, the intersection of thoughtful design and solid engineering is where the magic
+        happens.
       </Text>
 
       <Image src='/assets/experience.svg' />
